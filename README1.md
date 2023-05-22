@@ -228,5 +228,11 @@ pm.environment.set("salary", 300)
 ```
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
 ```
-
+for(var i = 0; i < 3; i++ ){
+	console.log(resp.salary[i])
+}
 ```
+![info_4](https://github.com/ProtskovV/Postman/assets/130400251/56daa1d3-8471-4dfa-83c5-3acc32143f22)
+
+
+
