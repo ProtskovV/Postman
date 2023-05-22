@@ -234,5 +234,116 @@ for(var i = 0; i < 3; i++ ){
 ```
 ![info_4](https://github.com/ProtskovV/Postman/assets/130400251/56daa1d3-8471-4dfa-83c5-3acc32143f22)
 
+## http://162.55.220.72:5005/user_info_2 ##
+1. Вставить параметр salary из окружения в request
+2. Вставить параметр age из окружения в age
+3. Вставить параметр name из окружения в name
+4. Отправить запрос.
+![image](https://github.com/ProtskovV/Postman/assets/130400251/9d8da6a5-0cc5-4321-bf84-624ac5d4b548)
 
-
+5. Статус код 200
+```
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+6. Спарсить response body в json.
+```
+var resp = pm.response.json();
+```
+7. Спарсить request.
+```
+var req = request.data;
+```
+8. Проверить, что json response имеет параметр start_qa_salary
+```
+pm.test("Test start_qa_salary", function () {
+    pm.expect(resp).to.property("start_qa_salary");
+});
+```
+9. Проверить, что json response имеет параметр qa_salary_after_6_months
+```
+pm.test("Test qa_salary_after_6_months", function () {
+    pm.expect(resp).to.property("qa_salary_after_6_months");
+});
+```
+10. Проверить, что json response имеет параметр qa_salary_after_12_months
+```
+pm.test("Test qa_salary_after_12_months", function () {
+    pm.expect(resp).to.property("qa_salary_after_12_months");
+});
+```
+11. Проверить, что json response имеет параметр qa_salary_after_1.5_year
+```
+pm.test("Test qa_salary_after_1.5_year", function () {
+    pm.expect(resp).to.property("qa_salary_after_1.5_year");
+});
+```
+12. Проверить, что json response имеет параметр qa_salary_after_3.5_years
+```
+pm.test("Test qa_salary_after_3.5_years", function () {
+    pm.expect(resp).to.property("qa_salary_after_3.5_years");
+});
+```
+13. Проверить, что json response имеет параметр person
+```
+pm.test("Test person", function () {
+    pm.expect(resp).to.property("person");
+});
+```
+14. Проверить, что параметр start_qa_salary равен salary из request (salary забрать из request.)
+```
+pm.test("Test start_qa_salary req", function () {
+    pm.expect(+resp.start_qa_salary).to.eql(+req.salary);
+});
+```
+15. Проверить, что параметр qa_salary_after_6_months равен salary*2 из request (salary забрать из request.)
+```
+pm.test("Test qa_salary_after_6_months req", function () {
+    pm.expect(+resp.qa_salary_after_6_months).to.eql(+req.salary*2);
+});
+```
+16. Проверить, что параметр qa_salary_after_12_months равен salary*2.7 из request (salary забрать из request.)
+```
+pm.test("Test qa_salary_after_12_months req", function () {
+    pm.expect(+resp.qa_salary_after_12_months).to.eql(+req.salary*2.7);
+});
+```
+17. Проверить, что параметр qa_salary_after_1.5_year равен salary*3.3 из request (salary забрать из request.)
+```
+pm.test("Test qa_salary_after_1.5_year req", function () {
+    var sal_1_5_y = resp ["qa_salary_after_1.5_year"];
+    pm.expect(sal_1_5_y).to.eql(+req.salary*3.3);
+});
+```
+18. Проверить, что параметр qa_salary_after_3.5_years равен salary*3.8 из request (salary забрать из request.)
+```
+pm.test("Test qa_salary_after_3.5_years req", function () {
+    var sal_3_5_y = resp ["qa_salary_after_3.5_years"];
+    pm.expect(sal_3_5_y).to.eql(+req.salary*3.8);
+});
+```
+19. Проверить, что в параметре person, 1-й элемент из u_name равен salary из request (salary забрать из request.)
+```
+pm.test("Test u_name[1]", function () {
+    pm.expect(+resp.person.u_name[1]).to.eql(+req.salary);
+});
+```
+20. Проверить, что что параметр u_age равен age из request (age забрать из request.)
+```
+pm.test("Test u_age", function () {
+    pm.expect(+resp.person.u_age).to.eql(+req.age);
+});
+```
+21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)
+```
+pm.test("Test u_salaru_5_years req", function () {
+    pm.expect(+resp.person.u_salary_5_years).to.eql(+req.salary*4.2);
+});
+```
+22. * Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
+```
+for(var i = 0; i < 3; i++){
+console.log(Object.entries(resp.person)[i]);
+}
+```
